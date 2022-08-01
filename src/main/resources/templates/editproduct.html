@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head >
+        <title>Product edit</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="container">
+           <h2>Product Edition</h2>
+        </div>
+        <div class="container">
+            <form class="row g-3" th:action="@{/saveproduct}" method="post" th:object="${product}">
+
+                <div class="col-md-6" th:if="${product.productID != null}">
+                    <label for="productID" class="form-label">ID product</label>
+                    <input type="text" class="form-control" id="productID" th:field="*{productID}" readonly/>
+                </div>
+                <div class="col-md-6" th:if="${product.productID == null}">
+                    <label for="productID" class="form-label">ID product</label>
+                    <input type="text" class="form-control" id="productID" th:field="*{productID}"/>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="productName" class="form-label">Product Full Name</label>
+                    <input type="text" class="form-control" id="productName" th:field="*{productName}"/>
+                </div>
+                <div class="col-12">
+                    <label for="categoryId" class="form-label">categoryId</label>
+                    <input type="text" class="form-control" id="categoryId" placeholder="1234 Main St" th:field="*{categoryId}"/>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" name="save" value="save">Save</button>
+                </div>
+            </form>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>

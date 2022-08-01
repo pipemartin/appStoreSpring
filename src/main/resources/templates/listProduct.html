@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Lista Productos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="col-auto container" >
+            <form id = "addCostomerForm" th:action = "@{/addproduct}"  method="get">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input type="submit" value="Add customer" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div th:if="${products != null and !products.empty}" class="col-auto container">
+            <h3>Lista de clientes</h3>
+            <table border="0" class="table table-striped" >
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.productID}">ID</th>
+                <td th:text="${product.productName}">Name</th>
+                <td th:text="${product.categoryId}">Category</th> 
+                <td><!-- Using Path Variable -->
+                    <a th:href="@{/editproduct/}+${product.productID}" th:text="Edit">Edit</a>
+                    <!-- Using Query Parameters -->
+                    <a th:href="@{/removeproduct(productID=${product.productID})}" th:text="Remove">Remove</a> 
+                </td>
+            </tr>
+        </table>
+             </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>

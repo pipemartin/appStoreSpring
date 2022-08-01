@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>StoreAppSp</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+       <h1>Store App Spring MVC - Cutomers</h1>
+       <div th:if="${products == null or products.empty}">
+            <h3>Lista de clientes vacia</h3>
+        </div>
+        <div th:if="${products != null and !products.empty}">
+            <h3>Lista de clientes</h3>
+            <table border="2" >
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.productID}">ID</th>
+                <td th:text="${product.productName}">Name</th>
+                <td th:text="${product.categoryId}">Category</th>  
+            </tr>
+        </table>
+        </div>
+    </body>
+</html>
